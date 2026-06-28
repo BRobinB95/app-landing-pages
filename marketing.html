@@ -1,21 +1,704 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Marketing</title>
-      <style>
-                body {
-                              font-family: Arial, sans-serif;
-                              margin: 40px;
-                              line-height: 1.6;
-                }
-            </style>
-  </head>
-  <body>
-        <!-- Add your marketing content here -->
-  </body>
-</html>html>
-  </body>
-      </style></title>
-  </head>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OverTime — Overuren bijhouden zonder gedoe</title>
+  <meta name="description" content="OverTime houdt je overuren automatisch bij. Snel invoeren, slimme herinneringen en een duidelijk overzicht. Gratis te downloaden voor iPhone.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #1A73E8;
+      --blue-dark: #0D47A1;
+      --blue-light: #E8F0FE;
+      --green: #34A853;
+      --text: #202124;
+      --muted: #5F6368;
+      --border: #E8EAED;
+      --bg: #F8F9FA;
+      --white: #FFFFFF;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
+      background: var(--white);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky;
+      top: 0;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: 18px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-icon {
+      width: 32px;
+      height: 32px;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+    }
+
+    .nav-cta {
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 8px 18px;
+      border-radius: 20px;
+      font-size: 14px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .nav-cta:hover { background: var(--blue-dark); }
+
+    /* HERO */
+    .hero {
+      padding: 80px 24px 64px;
+      text-align: center;
+      background: linear-gradient(180deg, var(--blue-light) 0%, var(--white) 100%);
+    }
+
+    .hero-eyebrow {
+      display: inline-block;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: 0.3px;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      font-weight: 800;
+      line-height: 1.15;
+      color: var(--text);
+      max-width: 640px;
+      margin: 0 auto 20px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 em {
+      font-style: normal;
+      color: var(--blue);
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--text);
+      color: white;
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.85; }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      color: var(--text);
+      text-decoration: none;
+      padding: 14px 24px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      border: 1.5px solid var(--border);
+      transition: border-color 0.2s;
+    }
+
+    .btn-secondary:hover { border-color: var(--blue); color: var(--blue); }
+
+    .hero-note {
+      margin-top: 16px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* MOCKUP */
+    .mockup-section {
+      padding: 0 24px 80px;
+      text-align: center;
+    }
+
+    .phone-mockup {
+      display: inline-block;
+      background: var(--text);
+      border-radius: 44px;
+      padding: 10px;
+      box-shadow: 0 40px 80px rgba(0,0,0,0.18), 0 0 0 1px rgba(0,0,0,0.08);
+      max-width: 260px;
+      margin: 0 auto;
+    }
+
+    .phone-screen {
+      background: var(--bg);
+      border-radius: 36px;
+      overflow: hidden;
+      padding: 20px 16px;
+    }
+
+    .phone-status {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    .phone-balance {
+      background: linear-gradient(135deg, #1A73E8, #0D47A1);
+      border-radius: 16px;
+      padding: 16px;
+      color: white;
+      margin-bottom: 12px;
+    }
+
+    .phone-balance .label {
+      font-size: 10px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .phone-balance .amount {
+      font-size: 28px;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-top: 2px;
+    }
+
+    .phone-balance .sub {
+      font-size: 11px;
+      opacity: 0.7;
+      margin-top: 2px;
+    }
+
+    .phone-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+
+    .phone-action {
+      background: white;
+      border-radius: 10px;
+      padding: 10px 4px;
+      text-align: center;
+      font-size: 9px;
+      color: var(--muted);
+    }
+
+    .phone-action .ico { font-size: 16px; display: block; margin-bottom: 3px; }
+
+    .phone-week {
+      background: white;
+      border-radius: 12px;
+      padding: 12px;
+    }
+
+    .phone-week .week-title {
+      font-size: 11px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .week-bars {
+      display: flex;
+      gap: 4px;
+      align-items: flex-end;
+      height: 36px;
+    }
+
+    .week-bar {
+      flex: 1;
+      border-radius: 3px;
+      background: var(--border);
+    }
+
+    .week-bar.has-data { background: var(--green); }
+    .week-bar.today { background: var(--blue); }
+
+    .week-days {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+    }
+
+    .week-day {
+      flex: 1;
+      text-align: center;
+      font-size: 8px;
+      color: var(--muted);
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 80px 24px;
+      background: var(--bg);
+    }
+
+    .section-label {
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blue);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 48px;
+      letter-spacing: -0.3px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 24px;
+    }
+
+    .feature-icon {
+      font-size: 32px;
+      margin-bottom: 12px;
+    }
+
+    .feature-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .feature-card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      padding: 80px 24px;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      margin-top: 48px;
+    }
+
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 36px;
+      height: 36px;
+      background: var(--blue);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 15px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .step h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .step p {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* PRICING */
+    .pricing {
+      padding: 80px 24px;
+      background: var(--bg);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      max-width: 860px;
+      margin: 48px auto 0;
+    }
+
+    .pricing-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 28px 24px;
+    }
+
+    .pricing-card.featured {
+      border-color: var(--blue);
+      position: relative;
+    }
+
+    .pricing-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--blue);
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 12px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .pricing-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .pricing-price {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--blue);
+      margin: 12px 0 4px;
+    }
+
+    .pricing-note {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .pricing-features {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .pricing-features li {
+      font-size: 14px;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+
+    .pricing-features li::before {
+      content: "✓";
+      color: var(--green);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 80px 24px;
+      text-align: center;
+      background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+      color: white;
+    }
+
+    .cta h2 {
+      font-size: clamp(24px, 4vw, 36px);
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .cta p {
+      font-size: 17px;
+      opacity: 0.85;
+      margin-bottom: 32px;
+    }
+
+    .cta .btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      color: var(--blue);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      transition: opacity 0.2s;
+    }
+
+    .cta .btn-white:hover { opacity: 0.9; }
+
+    /* FOOTER */
+    footer {
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    footer a { color: var(--blue); text-decoration: none; margin: 0 8px; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      .hero { padding: 56px 20px 48px; }
+      .hero h1 { font-size: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <div class="nav-icon">⏱</div>
+    OverTime
+  </a>
+  <a href="#download" class="nav-cta">Download</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Gratis voor iPhone</span>
+  <h1>Overuren bijhouden,<br><em>eindelijk zonder gedoe.</em></h1>
+  <p>Tik één keer als je stopt met werken. OverTime berekent de rest en herinnert je er de volgende keer aan.</p>
+  <div class="hero-buttons">
+    <a href="#download" class="btn-primary">
+      <span>🍎</span> Download op App Store
+    </a>
+    <a href="#hoe" class="btn-secondary">Hoe werkt het?</a>
+  </div>
+  <p class="hero-note">Gratis · Geen account nodig · iOS 17+</p>
+</section>
+
+<!-- MOCKUP -->
+<section class="mockup-section">
+  <div class="phone-mockup">
+    <div class="phone-screen">
+      <div class="phone-status">
+        <span>9:41</span>
+        <span>●●●</span>
+      </div>
+      <div class="phone-balance">
+        <div class="label">Huidig saldo</div>
+        <div class="amount">12u 45min</div>
+        <div class="sub">+1u 30min vandaag</div>
+      </div>
+      <div class="phone-actions">
+        <div class="phone-action"><span class="ico">⚡</span>Ik stop nu</div>
+        <div class="phone-action"><span class="ico">⏱</span>Timer</div>
+        <div class="phone-action"><span class="ico">＋</span>Manueel</div>
+      </div>
+      <div class="phone-week">
+        <div class="week-title">Deze week</div>
+        <div class="week-bars">
+          <div class="week-bar has-data" style="height:60%"></div>
+          <div class="week-bar has-data" style="height:40%"></div>
+          <div class="week-bar" style="height:8%"></div>
+          <div class="week-bar has-data" style="height:80%"></div>
+          <div class="week-bar today" style="height:50%"></div>
+          <div class="week-bar" style="height:8%"></div>
+          <div class="week-bar" style="height:8%"></div>
+        </div>
+        <div class="week-days">
+          <div class="week-day">Ma</div>
+          <div class="week-day">Di</div>
+          <div class="week-day">Wo</div>
+          <div class="week-day">Do</div>
+          <div class="week-day">Vr</div>
+          <div class="week-day">Za</div>
+          <div class="week-day">Zo</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="functies">
+  <div class="section-label">Functies</div>
+  <h2 class="section-title">Alles wat je nodig hebt</h2>
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon">⚡</div>
+      <h3>Snel invoeren</h3>
+      <p>Tik op "Ik stop nu" en de app berekent automatisch hoeveel je overwerkte t.o.v. je normale einduur. Drie tikken of minder.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🔔</div>
+      <h3>Slimme herinneringen</h3>
+      <p>Je krijgt elke werkdag een melding op het einde van je shift. Met knoppen rechtstreeks in de melding: stop nu, later of geen overuren.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📊</div>
+      <h3>Duidelijk overzicht</h3>
+      <p>Zie je saldo in één oogopslag. Bekijk je overuren per week, maand of jaar via het logboek en de kalenderweergave.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">⏱</div>
+      <h3>Timer</h3>
+      <p>Start een timer bij het begin van je overuren. De timer blijft lopen ook als je de app sluit. Stop hem wanneer je wil.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">🗓️</div>
+      <h3>Jouw werkschema</h3>
+      <p>Stel per weekdag je werktijden en pauze in. De app houdt rekening met jouw schema bij alle berekeningen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">📄</div>
+      <h3>Exporteren</h3>
+      <p>Exporteer je overuren als CSV voor je eigen administratie of om te openen in Excel of Numbers.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="hoe">
+  <div class="section-label">Hoe het werkt</div>
+  <h2 class="section-title">In drie stappen klaar</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-number">1</div>
+      <div>
+        <h3>Stel je werkschema in</h3>
+        <p>Vul bij de eerste opstart je werktijden per dag in. Welke dagen werk je, van wanneer tot wanneer, en hoeveel pauze? Klaar in twee minuten.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">2</div>
+      <div>
+        <h3>Registreer overuren met één tik</h3>
+        <p>Tik op "Ik stop nu" als je langer werkt dan gepland. De app berekent automatisch het verschil. Of start een timer, of vul het handmatig in — wat het snelst gaat voor jou.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-number">3</div>
+      <div>
+        <h3>Bekijk je saldo en exporteer</h3>
+        <p>Het dashboard toont altijd je huidig saldo. Exporteer je overzicht als CSV wanneer je het nodig hebt voor je eigen administratie of om door te sturen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<!-- GRATIS BADGE -->
+<section class="pricing" id="prijzen">
+  <div class="section-label">Prijzen</div>
+  <h2 class="section-title">Volledig gratis</h2>
+  <div style="max-width:480px;margin:0 auto;text-align:center;">
+    <div class="pricing-card" style="border-color:var(--green);">
+      <div style="font-size:48px;margin-bottom:12px;">🎉</div>
+      <h3 style="font-size:22px;margin-bottom:8px;">Alles inbegrepen</h3>
+      <div class="pricing-price" style="color:var(--green);">Gratis</div>
+      <div class="pricing-note">Geen abonnement · Geen in-app aankopen · Geen account</div>
+      <ul class="pricing-features" style="text-align:left;margin-top:20px;">
+        <li>Overuren registreren (snelle invoer, timer, manueel)</li>
+        <li>Saldo en weekoverzicht op het dashboard</li>
+        <li>Herinneringen met actieknoppen</li>
+        <li>Compensatieverlof bijhouden</li>
+        <li>Logboek en kalenderweergave</li>
+        <li>Statistieken en trends</li>
+        <li>Thema's en weergave-opties</li>
+        <li>Export als CSV</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="download">
+  <h2>Klaar om te starten?</h2>
+  <p>Volledig gratis. Geen account, geen abonnement, geen verborgen kosten.</p>
+  <a href="#" class="btn-white">
+    <span>🍎</span> Download op App Store
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>
+    © 2025 OverTime
+    <a href="support.html">Support</a>
+    <a href="privacy.html">Privacybeleid</a>
+  </p>
+</footer>
+
+</body>
+</html>
