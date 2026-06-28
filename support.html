@@ -1,21 +1,363 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Support</title>
-      <style>
-                body {
-                              font-family: Arial, sans-serif;
-                              margin: 40px;
-                              line-height: 1.6;
-                }
-            </style>
-  </head>
-  <body>
-        <!-- Add your support content here -->
-  </body>
-</html>html>
-  </body>
-      </style></title>
-  </head>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Support — OverTime</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --blue: #1A73E8;
+      --blue-light: #E8F0FE;
+      --green: #34A853;
+      --text: #202124;
+      --muted: #5F6368;
+      --border: #E8EAED;
+      --bg: #F8F9FA;
+      --white: #FFFFFF;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .app-icon {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, var(--blue), #0D47A1);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+    }
+
+    header h1 {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    header span {
+      font-size: 14px;
+      color: var(--muted);
+      margin-left: 4px;
+    }
+
+    .hero {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 48px 24px;
+      text-align: center;
+    }
+
+    .hero h2 {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .hero p {
+      font-size: 16px;
+      color: var(--muted);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 40px 24px;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 12px;
+      margin-top: 40px;
+    }
+
+    .section-title:first-child {
+      margin-top: 0;
+    }
+
+    .faq-item {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+
+    .faq-question {
+      padding: 16px 20px;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .faq-question:hover {
+      background: var(--bg);
+    }
+
+    .faq-arrow {
+      color: var(--muted);
+      font-size: 12px;
+      transition: transform 0.2s;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 16px;
+      color: var(--muted);
+      font-size: 15px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .faq-item.open .faq-answer { display: block; }
+    .faq-item.open .faq-arrow { transform: rotate(180deg); }
+
+    .contact-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      font-size: 28px;
+      flex-shrink: 0;
+    }
+
+    .contact-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .contact-card p {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .contact-card a:hover {
+      background: #1557B0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    @media (max-width: 480px) {
+      .info-grid { grid-template-columns: 1fr; }
+    }
+
+    .info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .info-card .label {
+      font-size: 12px;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+      margin-bottom: 4px;
+    }
+
+    .info-card .value {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+
+    footer a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="app-icon">⏱</div>
+  <div>
+    <h1>OverTime <span>Support</span></h1>
+  </div>
+</header>
+
+<div class="hero">
+  <h2>Hoe kunnen we helpen?</h2>
+  <p>Vind een antwoord op je vraag of neem contact op. We helpen je zo snel mogelijk verder.</p>
+</div>
+
+<main>
+
+  <div class="section-title">Veelgestelde vragen</div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      Hoe voeg ik overuren toe?
+      <span class="faq-arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Op het dashboard heb je drie knoppen: <strong>Ik stop nu</strong> berekent automatisch hoeveel overuren je hebt t.o.v. je normale einduur. <strong>Timer</strong> start een teller die je later stopt. <strong>Manueel</strong> laat je een datum, tijd en duur zelf invullen.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      Hoe stel ik mijn werkschema in?
+      <span class="faq-arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Ga naar <strong>Instellingen → Werkschema</strong>. Schakel de dagen in waarop je werkt en stel per dag je begin- en einduur in, inclusief pauzetijd. De app berekent automatisch je contracturen per week.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      Mijn data is verdwenen na het herinstalleren van de app.
+      <span class="faq-arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Je data staat lokaal op je toestel en wordt meegenomen in je iCloud-backup. Zorg dat iCloud-backup ingeschakeld is via <strong>Instellingen → [jouw naam] → iCloud → iCloud-backup</strong>. Als je een backup had voor het verwijderen, herstel dan je toestel vanuit die backup om je data terug te krijgen.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      Ik ontvang geen herinneringen.
+      <span class="faq-arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Controleer of meldingen toegestaan zijn via <strong>Instellingen van je iPhone → OverTime → Meldingen</strong>. Controleer ook in de app onder <strong>Instellingen → Herinneringen</strong> of de dagelijkse herinnering aanstaat en het tijdstip correct ingesteld is.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      Hoe registreer ik compensatieverlof?
+      <span class="faq-arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Tik op <strong>Manueel</strong> en kies bij "Type" de optie <strong>Compensatieverlof</strong>. Vul de datum en het aantal uren in. Het saldo op je dashboard daalt automatisch.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      Hoe exporteer ik mijn overuren?
+      <span class="faq-arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Ga naar <strong>Instellingen → Exporteren</strong>. Kies een periode (deze maand, dit jaar of alles) en exporteer als CSV. Je kunt het bestand daarna delen via mail, AirDrop of opslaan in Bestanden om te openen in Excel of Numbers.
+    </div>
+  </div>
+
+  <div class="faq-item">
+    <div class="faq-question" onclick="toggle(this)">
+      Werkt de timer als ik de app sluit?
+      <span class="faq-arrow">▼</span>
+      <span class="faq-arrow">▼</span>
+    </div>
+    <div class="faq-answer">
+      Ja. De timer slaat het starttijdstip op. Als je de app sluit en later terug opent, berekent de app automatisch hoeveel tijd er verstreken is en toont de correcte tijd.
+    </div>
+  </div>
+
+  <div class="section-title">Contact</div>
+
+  <div class="contact-card">
+    <div class="contact-icon">✉️</div>
+    <div>
+      <h3>Stuur een bericht</h3>
+      <p>Staat je vraag er niet tussen? Stuur ons een e-mail en we antwoorden zo snel mogelijk, meestal binnen 1-2 werkdagen.</p>
+      <a href="mailto:support@jouwnaam.be">support@jouwnaam.be</a>
+    </div>
+  </div>
+
+  <div class="section-title">App info</div>
+
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="label">Huidige versie</div>
+      <div class="value">1.0.0</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Vereist</div>
+      <div class="value">iOS 17 of nieuwer</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Beschikbaar in</div>
+      <div class="value">App Store</div>
+    </div>
+    <div class="info-card">
+      <div class="label">Taal</div>
+      <div class="value">Nederlands</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>© 2025 OverTime · <a href="privacy.html">Privacybeleid</a></p>
+</footer>
+
+<script>
+  function toggle(el) {
+    el.parentElement.classList.toggle('open');
+  }
+</script>
+
+</body>
+</html>
